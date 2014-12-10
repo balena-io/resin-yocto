@@ -4,7 +4,9 @@
 	<include name="manifests/base.xml"/>
 
 	<project name="poky" revision="refs/heads/daisy" remote="yocto" />
-	<project name="rulemotion/meta-resin" revision="refs/heads/master" dest-branch="master" path="meta-resin" remote="bitbucket"/>
+	<project name="rulemotion/meta-resin" revision="refs/heads/master" dest-branch="master" path="meta-resin" remote="bitbucket">
+		<linkfile dest="build" src="conf"/>
+	</project>
 	<project name="meta-raspberrypi" revision="refs/heads/daisy" remote="yocto"/>
 	<project name="meta-virtualization" revision="refs/heads/daisy" remote="yocto"/>
 	<project name="openembedded/meta-openembedded" revision="refs/heads/daisy" dest-branch="daisy" path="meta-openembedded" remote="github"/>
