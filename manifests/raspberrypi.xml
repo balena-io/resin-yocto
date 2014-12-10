@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-	<remote name="yocto" fetch="git://git.yoctoproject.org" />
-	<remote name="bitbucket" fetch="ssh://git@bitbucket.org"/>
-	<remote name="github" fetch="git://github.com"/>
+	
+	<include name="base.xml"/>
 
 	<project name="poky" revision="refs/heads/daisy" remote="yocto" />
 	<project name="rulemotion/meta-resin" revision="refs/heads/master" dest-branch="master" path="meta-resin" remote="bitbucket"/>

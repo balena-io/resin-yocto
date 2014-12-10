@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+	<remote name="yocto" fetch="git://git.yoctoproject.org" />
+	<remote name="bitbucket" fetch="ssh://git@bitbucket.org"/>
+	<remote name="github" fetch="git://github.com"/>
+
+	<default sync-j="4"/>
+
+</manifest>
