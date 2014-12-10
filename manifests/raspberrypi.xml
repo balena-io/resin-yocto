@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 	
-	<include name="base.xml"/>
+	<include name="manifests/base.xml"/>
 
 	<project name="poky" revision="refs/heads/daisy" remote="yocto" />
 	<project name="rulemotion/meta-resin" revision="refs/heads/master" dest-branch="master" path="meta-resin" remote="bitbucket"/>
