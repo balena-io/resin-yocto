@@ -1,5 +1,8 @@
-# Resin.io Yocto manifests with repo tool.
+##  Resin.io Yocto manifests with repo tool. #
 
-* Use the following to initialize the workspace with repositories as per the device.
-	./repo init -u .git -m manifests/raspberrypi.xml
-
+* After you download this repository, execute the following in the repository to initialize the workspace for a device type [Example: raspberrypi].	
+```
+#!bash
+    
+    ./repo init -u .git -m manifests/raspberrypi.xml
+```
