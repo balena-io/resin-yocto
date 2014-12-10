@@ -1,0 +1,11 @@
+# Ignore all layers
+meta-*
+
+# Ignore poky
+poky/
+
+# Ignore repo directory
+.repo/
+
+# Ignore build directory
+build/
