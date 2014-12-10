@@ -4,7 +4,7 @@
 	<include name="manifests/base.xml"/>
 
 	<project name="poky" revision="refs/heads/master" remote="yocto" />
-	<project name="rulemotion/meta-resin" revision="Arch_specific_Cleanup" dest-branch="Arch_specific_Cleanup" path="meta-resin" remote="bitbucket">
+	<project name="rulemotion/meta-resin" revision="Arch_specific_Cleanup" dest-branch="Arch_specific_Cleanup" path="meta-resin" sync-c="true" remote="bitbucket">
 		<linkfile dest="build/conf/local.conf" src="meta-resin-raspberrypi/conf/local.conf"/>
 		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-raspberrypi/conf/bblayers.conf"/>
 	</project>
