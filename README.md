@@ -29,3 +29,5 @@
 
 ./repo prune
 ```
+# **Statutory warning:** #
+Failure to keep manifests updated will result in outdated builds and can lead to cancer or other harmful conditions.
