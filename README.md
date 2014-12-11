@@ -1,6 +1,8 @@
-##  Resin.io Yocto manifests with repo tool. #
+# ** Resin.io Yocto manifests with repo tool.** #
 
-* After you download this repository, execute the following in the repository to initialize the workspace for a device type [Example: raspberrypi].	
+##** Environment setup** ##
+
+* After you download this repository, execute the following in the repository to initialize the workspace for a device type [Example: raspberrypi master manifest].	
 ```
 #!bash
     
@@ -16,7 +18,22 @@
 ```
 * repo tool would have also sym-linked the local.conf and bblayers.conf from the machine specific meta-resin-<device> library.
 
-## Additional Notes: ##
+##** Production vs Master builds** ##
+**NOTE:** Production and Master builds use different manifests.
+
+** Steps to promote a build to production: **
+
+* Update the production manifest with any changes to revisions of dependencies and commit to master.
+* Merge till the above commit into the production branch.
+* The above guarantees that production manifests of different devices are stable.
+* Use repo to initialise the production manifest of a device [raspberrypi-production] as follows:
+```
+#!bash
+    
+    ./repo init -u .git -m manifests/raspberrypi-production.xml
+```
+
+##** Additional Notes** ##
 * While developing with meta-resin or any other layer - be sure to start a new branch for development as follows.
 ```
 #!bash
