@@ -5,8 +5,8 @@
 
 	<project name="poky" revision="dizzy" remote="yocto" />
 	<project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket">
-		<!--<linkfile dest="build/conf/local.conf" src="meta-resin-raspberrypi/conf/local.conf"/>
-		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-raspberrypi/conf/bblayers.conf"/>-->
+		<linkfile dest="build/conf/local.conf" src="meta-resin-beaglebone/conf/local.conf"/>
+		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-beaglebone/conf/bblayers.conf"/>
 	</project>
 	<project name="meta-virtualization" revision="dizzy" remote="yocto"/>
 	<project name="openembedded/meta-openembedded" revision="dizzy" path="meta-openembedded" remote="github"/>
