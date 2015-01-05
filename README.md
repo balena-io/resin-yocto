@@ -6,7 +6,8 @@
 ```
 #!bash
     
-    ./repo init -u .git -m manifests/raspberrypi.xml
+    ./repo init -u .git -m manifests/raspberrypi.xml 
+    ./repo sync
 ```
 * At this point you should have all the dependent layers for building an image for the specific board selected above. 
 
