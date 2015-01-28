@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	
+	<include name="manifests/base.xml"/>
+
+	<project name="poky" revision="daisy" remote="yocto" />
+	<project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket">
+		<linkfile dest="build/conf/local.conf" src="meta-resin-raspberrypi/conf/local.conf"/>
+		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-raspberrypi/conf/bblayers.conf"/>
+	</project>
+	<project name="meta-virtualization" revision="c0423005b36d80bd35bd329b5460b4ac78365fd2" remote="yocto"/>
+	<project name="openembedded/meta-openembedded" revision="b66a7ded8f341bebe4fdc9ac0351afcf22ac0d5c" path="meta-openembedded" remote="github"/>
+
+</manifest>
