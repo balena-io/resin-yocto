@@ -8,7 +8,7 @@
 		<linkfile dest="build/conf/local.conf" src="meta-resin-raspberrypi/conf/local.conf"/>
 		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-raspberrypi/conf/bblayers.conf"/>
 	</project>
-	<project name="meta-raspberrypi" revision="d8bf60ce6c4a6c6371527c6df2e3243d2771c0cc" remote="yocto"/>
+	<project name="meta-raspberrypi" revision="57c8e6bffbbef9b2331551093c3436303eb18386" remote="yocto"/>
 	<project name="meta-virtualization" revision="c0423005b36d80bd35bd329b5460b4ac78365fd2" remote="yocto"/>
 	<project name="openembedded/meta-openembedded" revision="b66a7ded8f341bebe4fdc9ac0351afcf22ac0d5c" path="meta-openembedded" remote="github"/>
 
