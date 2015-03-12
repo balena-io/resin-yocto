@@ -9,3 +9,6 @@ poky/
 
 # Ignore build directory
 build/
+
+# Ignore Edison-src
+edison-src/

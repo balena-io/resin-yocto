@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	
+	<include name="manifests/base.xml"/>
+
+	<project name="poky" revision="c4f1f0f491f988901bfd6965f7d10f60cb94a76f" remote="yocto"/>
+	<project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket">
+		<linkfile dest="build/conf/local.conf" src="meta-resin-edison/conf/local.conf"/>
+		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-edison/conf/bblayers.conf"/>
+	</project>
+	<project name="rulemotion/edison-src" revision="master" path="edison-src"  sync-c="true" remote="bitbucket"/>
+	<project name="meta-virtualization" revision="daisy" remote="yocto"/>
+	<project name="openembedded/meta-openembedded" revision="daisy" path="meta-openembedded" remote="github"/>
+
+</manifest>
