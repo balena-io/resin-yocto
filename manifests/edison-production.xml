@@ -4,7 +4,7 @@
 	<include name="manifests/base.xml"/>
 
 	<project name="poky" revision="c4f1f0f491f988901bfd6965f7d10f60cb94a76f" remote="yocto"/>
-	<project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket">
+	<project name="rulemotion/meta-resin" revision="production" path="meta-resin" sync-c="true" remote="bitbucket">
 		<linkfile dest="build/conf/local.conf" src="meta-resin-edison/conf/local.conf"/>
 		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-edison/conf/bblayers.conf"/>
 	</project>
