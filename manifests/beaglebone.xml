@@ -3,13 +3,13 @@
 	
 	<include name="manifests/base.xml"/>
 
-	<project name="poky" revision="dizzy" remote="yocto" />
-	<project name="meta-ti" revision="master" remote="yocto" />
+	<project name="poky" revision="93e3df91aaebd48b9c4af946247f3488681d32b6" remote="yocto" />
+	<project name="meta-ti" revision="1b66b5a01c1d657c7603dd63110cfb21998dbc98" remote="yocto" />
 	<project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket">
 		<linkfile dest="build/conf/local.conf" src="meta-resin-beaglebone/conf/local.conf"/>
 		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-beaglebone/conf/bblayers.conf"/>
 	</project>
-	<project name="meta-virtualization" revision="dizzy" remote="yocto"/>
-	<project name="openembedded/meta-openembedded" revision="dizzy" path="meta-openembedded" remote="github"/>
+	<project name="meta-virtualization" revision="8ec8270017fbeae8fcb8c2d82a60a9f5116b0cf2" remote="yocto"/>
+	<project name="openembedded/meta-openembedded" revision="853dcfa0d618dc26bd27b3a1b49494b98d6eee97" path="meta-openembedded" remote="github"/>
 
 </manifest>
