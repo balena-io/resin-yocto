@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	
+	<include name="manifests/base.xml"/>
+
+	<project name="poky" revision="af691920c0e289fd0eb13d94cad03c799375af21" remote="yocto" />
+	<project name="rulemotion/meta-resin" revision="production" path="meta-resin" sync-c="true" remote="bitbucket">
+		<linkfile dest="build/conf/local.conf" src="meta-resin-parallella/conf/local.conf"/>
+		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-parallella/conf/bblayers.conf"/>
+	</project>
+	<project name="nathanrossi/meta-parallella" revision="1bb8172879700c388ce93bcb722e15e6b1cbaafc" path="meta-parallella" remote="github"/>
+	<project name="meta-virtualization" revision="dizzy" remote="yocto"/>
+	<project name="Xilinx/meta-xilinx" revision="cd67eae1c63c64a2edd9560aec6d0b78fd7549cb" path="meta-xilinx" remote="github"/>
+	<project name="openembedded/meta-openembedded" revision="bb177c85a25d2b75583abe218396520c375f8f18" path="meta-openembedded" remote="github"/>
+
+</manifest>
