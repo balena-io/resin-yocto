@@ -3,11 +3,8 @@
 
   <include name="manifests/resin-boards.xml"/>
 
-  <!-- Custom poky revision -->
-  <remove-project name="poky" />
-  <project name="poky" revision="3a17209e121e4a56bf54f4aae83b7d85020da937" remote="yocto" />
-
-  <remove-project name="openembedded/meta-openembedded" />
-  <project name="meta-raspberrypi" revision="57c8e6bffbbef9b2331551093c3436303eb18386" remote="yocto"/>
+  <!-- We keep this as documentation on how to override a project
+  <remove-project name="repository" />
+  <project name="repository" revision="tothisrevision" remote="repositoryremote" />  -->
 
 </manifest>
