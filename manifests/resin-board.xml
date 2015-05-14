@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <include name="manifests/base.xml"/>
+
+  <!-- Base layers -->
+  <project name="poky" revision="dizzy" remote="yocto" />
+  <project name="openembedded/meta-openembedded" revision="dizzy" path="meta-openembedded" remote="github"/>
+  <project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket" />
+
+  <!-- BSP layers -->
+  <project name="meta-ti" revision="1b66b5a01c1d657c7603dd63110cfb21998dbc98" remote="yocto" />
+  <project name="Freescale/meta-fsl-arm" revision="dizzy" path="meta-fsl-arm" remote="github"/>
+  <project name="Freescale/meta-fsl-arm-extra" revision="dizzy" path="meta-fsl-arm-extra" remote="github"/>
+  <project name="nathanrossi/meta-parallella" revision="1bb8172879700c388ce93bcb722e15e6b1cbaafc" path="meta-parallella" remote="github"/>
+  <project name="Xilinx/meta-xilinx" revision="cd67eae1c63c64a2edd9560aec6d0b78fd7549cb" path="meta-xilinx" remote="github"/>
+  <project name="meta-raspberrypi" revision="57c8e6bffbbef9b2331551093c3436303eb18386" remote="yocto"/>
+
+</manifest>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <include name="manifests/base.xml"/>
+  <include name="manifests/resin-board.xml"/>
+
+  <project name="poky" revision="dizzy" remote="yocto" />
+  <project name="openembedded/meta-openembedded" revision="b66a7ded8f341bebe4fdc9ac0351afcf22ac0d5c" path="meta-openembedded" remote="github"/>
+
+  <project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket">
+    <linkfile dest="build/conf/local.conf" src="meta-resin-common/conf/local.conf"/>
+    <linkfile dest="build/conf/bblayers.conf" src="meta-resin-common/conf/bblayers.conf"/>
+  </project>
+
+</manifest>
