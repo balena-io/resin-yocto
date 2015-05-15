@@ -11,13 +11,24 @@
 ```
 * At this point you should have all the dependent layers for building an image for a resin supported board.
 
+###** Manual builds **###
 * Initialise the Yocto environment by running the following.
 ```
 #!bash
 
     export TEMPLATECONF=../meta-resin/meta-resin-common/conf/
     source ./poky/oe-init-build-env
-    vim conf/local.conf
+    vim conf/local.conf # Set your variables
+    bitbake <target>
+```
+
+###** Builds using yocto helper [BARYS] **###
+* This repository comes with a build helper which can automate builds and can run multiple configurations in the same build.
+* For more information check the helper's usage:
+```
+#!bash
+
+    scripts/barys -h
 ```
 
 ##** Production vs Master builds** ##
