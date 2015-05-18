@@ -143,8 +143,8 @@ function log {
 
 function check_machine {
     found=0
-    for m in "${SUPPORTED_MACHINES[@]}"; do
-        if [ "$1" == "$m" ]; then
+    for mi in "${SUPPORTED_MACHINES[@]}"; do
+        if [ "$1" == "$mi" ]; then
             found=1
             break
         fi
@@ -169,7 +169,7 @@ while [[ $# -ge 1 ]]; do
         -h|--help)
             help
             exit 0
-        ;;
+            ;;
         -m|--machine)
             if [ -z "$2" ]; then
                 log ERROR "\"$1\" argument needs a value."
@@ -222,10 +222,11 @@ while [[ $# -ge 1 ]]; do
             read -p "Select machines. Space separated or empty for all: " m
             MACHINES=$m
             for m in $MACHINES; do
-            check_machine $m
-            if [ $found -eq 0 ]; then
-                log ERROR "\"$m\" is not a supported machine."
-            fi
+                check_machine $m
+                if [ $found -eq 0 ]; then
+                    log ERROR "\"$m\" is not a supported machine."
+                fi
+            done
 
             read -p "Run bitbake with \"-k\"? yes/[no] " yn
             case $yn in
