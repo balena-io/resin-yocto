@@ -43,7 +43,7 @@
 ```
 #!bash
 
-    ./repo init -u .git -m manifests/resin-board-production.xml
+    ./repo init -u .git -m manifests/resin-board-production.xml -b production
 ```
 
 ##** Additional Notes** ##
