@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-	
-	<include name="manifests/base.xml"/>
 
-	<project name="poky" revision="dizzy" remote="yocto" />
-	<project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket">
-		<linkfile dest="build/conf/local.conf" src="meta-resin-fsl-arm/conf/local.conf"/>
-		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-fsl-arm/conf/bblayers.conf"/>
-	</project>
-	<project name="Freescale/meta-fsl-arm" revision="dizzy" path="meta-fsl-arm" remote="github"/>
-	<project name="Freescale/meta-fsl-arm-extra" revision="dizzy" path="meta-fsl-arm-extra" remote="github"/>
-	<project name="openembedded/meta-openembedded" revision="b66a7ded8f341bebe4fdc9ac0351afcf22ac0d5c" path="meta-openembedded" remote="github"/>
+  <include name="manifests/resin-board.xml"/>
+
+  <!-- We keep this as documentation on how to override a project
+  <remove-project name="repository" />
+  <project name="repository" revision="tothisrevision" remote="repositoryremote" />  -->
 
 </manifest>

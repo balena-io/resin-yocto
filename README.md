@@ -2,22 +2,34 @@
 
 ##** Environment setup** ##
 
-* After you download this repository, execute the following in the repository to initialize the workspace for a device type [Example: raspberrypi master manifest].	
+* After you download this repository, execute the following in the repository to initialize the workspace.
 ```
 #!bash
-    
-    ./repo init -u .git -m manifests/raspberrypi.xml 
+
+    ./repo init -u .git -m manifests/resin-board.xml
     ./repo sync
 ```
-* At this point you should have all the dependent layers for building an image for the specific board selected above. 
+* At this point you should have all the dependent layers for building an image for a resin supported board.
 
+###** Manual builds **###
 * Initialise the Yocto environment by running the following.
 ```
 #!bash
-    
+
+    export TEMPLATECONF=../meta-resin/meta-resin-common/conf/
     source ./poky/oe-init-build-env
+    vim conf/local.conf # Set your variables
+    bitbake <target>
 ```
-* repo tool would have also sym-linked the local.conf and bblayers.conf from the machine specific meta-resin-<device> library.
+
+###** Builds using yocto helper [BARYS] **###
+* This repository comes with a build helper which can automate builds and can run multiple configurations in the same build.
+* For more information check the helper's usage:
+```
+#!bash
+
+    scripts/barys -h
+```
 
 ##** Production vs Master builds** ##
 **NOTE:** Production and Master builds use different manifests.
@@ -27,14 +39,16 @@
 * Update the production manifest with any changes to revisions of dependencies and commit to master.
 * Merge till the above commit into the production branch.
 * The above guarantees that production manifests of different devices are stable.
-* Use repo to initialise the production manifest of a device [raspberrypi-production] as follows:
+* Use repo to initialise the production manifest as follows:
 ```
 #!bash
-    
-    ./repo init -u .git -m manifests/raspberrypi-production.xml
+
+    ./repo init -u .git -m manifests/resin-board-production.xml -b production
 ```
 
 ##** Additional Notes** ##
+* Edison manifests are not unified yet so, for this specific board, use the edison.xml and edison-production.xml manifests.
+* The <board>.xml and <board>-production.xml manifests were kept only for compatifily or for further needs on having different code base per device.
 * While developing with meta-resin or any other layer - be sure to start a new branch for development as follows.
 ```
 #!bash

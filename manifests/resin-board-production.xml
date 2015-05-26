@@ -6,5 +6,4 @@
   <!-- Use production branch of meta-resin> -->
   <remove-project name="rulemotion/meta-resin" />
   <project name="rulemotion/meta-resin" revision="production" path="meta-resin" sync-c="true" remote="bitbucket" />
-
 </manifest>

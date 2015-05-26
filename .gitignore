@@ -8,7 +8,13 @@ poky/
 .repo/
 
 # Ignore build directory
-build/
+build*/
 
 # Ignore Edison-src
 edison-src/
+
+# Ignore shared directories
+shared-*/
+
+# Some log files from scripts
+*.log
