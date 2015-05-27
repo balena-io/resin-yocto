@@ -54,11 +54,5 @@ BARYS_ARGUMENTS_VAR=BARYS_ARGUMENTS_$sourceBranch
 mkdir -p $JENKINS_DEPLOY_DIR/$BUILD_NUMBER
 rm -rf $JENKINS_DEPLOY_DIR/$BUILD_NUMBER/* # do we have anything there?
 cp -rv build/tmp/deploy/images/$MACHINE/*.resin-sdcard $JENKINS_DEPLOY_DIR/$BUILD_NUMBER
+cp build/tmp/deploy/images/$MACHINE/VERSION $JENKINS_DEPLOY_DIR/$BUILD_NUMBER
 ln -sf $BUILD_NUMBER $JENKINS_DEPLOY_DIR/latest
-
-# Write version
-SUPERVISOR_VAR=`echo "SUPERVISOR_$MACHINE" | sed 's/-/_/g'` # You can't have dashes in variable names
-echo -n `docker inspect resin/${!SUPERVISOR_VAR}:$sourceBranch | \
-    grep '"VERSION=' | head -n 1 | tr -d " " | tr -d "\"" | \
-    tr -d "VERSION="` \
-    > $JENKINS_DEPLOY_DIR/$BUILD_NUMBER/VERSION
