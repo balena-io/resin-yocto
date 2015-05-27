@@ -1,41 +1,64 @@
 #!/bin/bash
-
 set -e
 
 MACHINE=$1
-YOCTO_TARGETS=$2
-SUPERVISOR=$3
+JENKINS_PERSISTENT_WORKDIR=/mnt/btrfs_drive/yocto
+JENKINS_DL_DIR=$JENKINS_PERSISTENT_WORKDIR/yocto-downloads
+JENKINS_SSTATE_DIR=$JENKINS_PERSISTENT_WORKDIR/yocto-sstate-$MACHINE
+JENKINS_DEPLOY_DIR=$JENKINS_PERSISTENT_WORKDIR/yocto-deploy-$MACHINE
+SUPERVISOR_raspberrypi=rpi-supervisor
+SUPERVISOR_raspberrypi2=armv7hf-supervisor
+SUPERVISOR_beaglebone=armv7hf-supervisor
+SUPERVISOR_nitrogen6x=armv7hf-supervisor
+SUPERVISOR_parallella_hdmi_resin=armv7hf-supervisor
+BARYS_ARGUMENTS_production=""
+BARYS_ARGUMENTS_master="-s"
 
-# Don't cleanup workspace to keep repositories and save some time
-rm -rf build/
-
-# Checkout proper branch
-git checkout $sourceBranch
-
-# Init repo
-./repo init -u .git -b $sourceBranch -m manifests/resin-board-$sourceBranch.xml
-
-# Pull in sources
-./repo sync
-
-# Configure build
-export TEMPLATECONF=../meta-resin/meta-resin-common/conf/
-source poky/oe-init-build-env build
-
-# Custom build variables
-echo 'DL_DIR="/mnt/btrfs_drive/yocto/yocto-downloads"' >> conf/local.conf
-echo "SSTATE_DIR='/mnt/btrfs_drive/yocto/yocto-sstate-${MACHINE}'" >> conf/local.conf
-echo "TMPDIR='/mnt/btrfs_drive/yocto/yocto-resin-${MACHINE}/$sourceBranch'" >> conf/local.conf
-if [ "$sourceBranch" == "master" ]; then
-    echo 'RESIN_STAGING_BUILD = "yes"' >> conf/local.conf
-    echo 'INHERIT += "rm_work"' >> conf/local.conf # yocto says this will speed up a little
+# Sanity checks
+if [ "$#" -ne 1 ]; then
+    echo "Usage: jenkins_build.sh <MACHINE> [JENKINS_PERSISTENT_WORKDIR]"
+    exit 1
+fi
+if [ -z "$BUILD_NUMBER" ] || [ -z "$sourceBranch" ]; then
+    echo "[ERROR] BUILD_NUMBER and sourceBranch variable undefined."
+    exit 1
 fi
 
-# Start build
-MACHINE=${MACHINE} bitbake ${YOCTO_TARGETS}
+# Get the absolute script location
+pushd `dirname $0` > /dev/null 2>&1
+SCRIPTPATH=`pwd`
+popd > /dev/null 2>&1
 
-# Write VERSION
-echo -n `docker inspect resin/${SUPERVISOR}:$sourceBranch | \
+# Make sure we are where we have to be
+cd $SCRIPTPATH/..
+
+# Custom JENKINS_PERSISTENT_WORKDIR?
+if [ "$#" -eq 2 ]; then
+    JENKINS_PERSISTENT_WORKDIR=$2
+fi
+
+# Get sources
+git checkout $sourceBranch
+./repo init -u .git -b $sourceBranch -m manifests/resin-board-$sourceBranch.xml
+./repo sync
+
+# Run build
+BARYS_ARGUMENTS_VAR=BARYS_ARGUMENTS_$sourceBranch
+./scripts/barys  -l -r -m $MACHINE ${!BARYS_ARGUMENTS_VAR} \
+    --shared-downloads $JENKINS_DL_DIR \
+    --shared-sstate $JENKINS_SSTATE_DIR
+
+#echo 'INHERIT += "rm_work"' >> conf/local.conf # yocto says this will speed up a little
+
+# Write deploy artifacts
+mkdir -p $JENKINS_DEPLOY_DIR/$BUILD_NUMBER
+rm -rf $JENKINS_DEPLOY_DIR/$BUILD_NUMBER/* # do we have anything there?
+cp -rv build/tmp/deploy/images/$MACHINE/*.resin-sdcard $JENKINS_DEPLOY_DIR/$BUILD_NUMBER
+ln -sf $BUILD_NUMBER $JENKINS_DEPLOY_DIR/latest
+
+# Write version
+SUPERVISOR_VAR=`echo "SUPERVISOR_$MACHINE" | sed 's/-/_/g'` # You can't have dashes in variable names
+echo -n `docker inspect resin/${!SUPERVISOR_VAR}:$sourceBranch | \
     grep '"VERSION=' | head -n 1 | tr -d " " | tr -d "\"" | \
     tr -d "VERSION="` \
-    > /mnt/btrfs_drive/yocto/yocto-resin-${MACHINE}/$sourceBranch/deploy/images/${MACHINE}/VERSION
+    > $JENKINS_DEPLOY_DIR/$BUILD_NUMBER/VERSION
