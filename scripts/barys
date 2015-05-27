@@ -41,6 +41,7 @@ SHARED_DOWNLOADS=
 SHARED_SSTATE=
 DRY_RUN=no
 LOG=no
+RM_WORK=
 LOGFILE=`pwd`/`basename "$0"`.log
 MACHINES=
 BITBAKEARGS=
@@ -108,6 +109,10 @@ function help {
     echo -e "\t\t Machine is ignored and will need to be modified accordingly"
     echo -e "\t\t in local.conf file or using MACHINE=yyy in front of bitbake"
     echo -e "\t\t commands"
+    echo -e "\t\t Default: no."
+
+    echo -e "\t--rm-work"
+    echo -e "\t\t Inherit rm_work in local.conf."
     echo -e "\t\t Default: no."
 
     echo -e "\t-i | --interactive"
@@ -226,6 +231,9 @@ while [[ $# -ge 1 ]]; do
         -n|--dry-run)
             DRY_RUN=yes
             ;;
+        --rm-work)
+            RM_WORK=yes
+            ;;
         -i|--interactive)
             echo -n "Supported machines:"
             for m in ${SUPPORTED_MACHINES[@]}; do
@@ -291,6 +299,11 @@ while [[ $# -ge 1 ]]; do
                 [Yy]* ) LOG=yes;;
             esac
 
+            read -p "Inherit rm_work? yes/[no] " yn
+            case $yn in
+                [Yy]* ) RM_WORK=yes;;
+            esac
+
             read -p "Dry run? yes/[no] " yn
             case $yn in
                 [Yy]* ) DRY_RUN=yes;;
@@ -324,6 +337,7 @@ if [ "z$LOG" == "zyes" ]; then
     echo "Shared downloads directory: $SHARED_DOWNLOADS" >> $LOGFILE
     echo "Shared sstate directory: $SHARED_SSTATE" >> $LOGFILE
     echo "Staging builds? $STAGING" >> $LOGFILE
+    echo "Inherit rm_work? $RM_WORK" >> $LOGFILE
     echo "================"`basename "$0"`" HEADER STOP=====================" >> $LOGFILE
 fi
 
@@ -352,6 +366,9 @@ if [ "x$STAGING" == "xyes" ]; then
 fi
 if [ "x$COMPRESS" == "xyes" ]; then
     sed -i "s/.*RESIN_SDIMG_COMPRESSION ?=.*/RESIN_SDIMG_COMPRESSION ?= \"${COMPRESS_TOOL}\"/g" conf/local.conf
+fi
+if [ "x$RM_WORK" == "xyes" ]; then
+    sed -i "s/.*INHERIT += \"rm_work\".*/INHERIT += \"rm_work\"/g" conf/local.conf
 fi
 if [ -n "$SHARED_DOWNLOADS" ]; then
     sed -i "s#.*DL_DIR ?=.*#DL_DIR ?= \"$SHARED_DOWNLOADS\"#g" conf/local.conf
