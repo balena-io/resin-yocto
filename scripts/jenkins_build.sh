@@ -46,9 +46,8 @@ git checkout $sourceBranch
 BARYS_ARGUMENTS_VAR=BARYS_ARGUMENTS_$sourceBranch
 ./scripts/barys  -l -r -m $MACHINE ${!BARYS_ARGUMENTS_VAR} \
     --shared-downloads $JENKINS_DL_DIR \
-    --shared-sstate $JENKINS_SSTATE_DIR
-
-#echo 'INHERIT += "rm_work"' >> conf/local.conf # yocto says this will speed up a little
+    --shared-sstate $JENKINS_SSTATE_DIR \
+    --rm-work
 
 # Write deploy artifacts
 mkdir -p $JENKINS_DEPLOY_DIR/$BUILD_NUMBER
