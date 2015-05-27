@@ -2,7 +2,7 @@
 set -e
 
 MACHINE=$1
-JENKINS_PERSISTENT_WORKDIR=/mnt/btrfs_drive/yocto
+JENKINS_PERSISTENT_WORKDIR=$2
 JENKINS_DL_DIR=$JENKINS_PERSISTENT_WORKDIR/yocto-downloads
 JENKINS_SSTATE_DIR=$JENKINS_PERSISTENT_WORKDIR/yocto-sstate-$MACHINE
 JENKINS_DEPLOY_DIR=$JENKINS_PERSISTENT_WORKDIR/yocto-deploy-$MACHINE
@@ -15,8 +15,8 @@ BARYS_ARGUMENTS_production=""
 BARYS_ARGUMENTS_master="-s"
 
 # Sanity checks
-if [ "$#" -ne 1 ]; then
-    echo "Usage: jenkins_build.sh <MACHINE> [JENKINS_PERSISTENT_WORKDIR]"
+if [ "$#" -ne 2 ]; then
+    echo "Usage: jenkins_build.sh <MACHINE> <JENKINS_PERSISTENT_WORKDIR>"
     exit 1
 fi
 if [ -z "$BUILD_NUMBER" ] || [ -z "$sourceBranch" ]; then
@@ -31,11 +31,6 @@ popd > /dev/null 2>&1
 
 # Make sure we are where we have to be
 cd $SCRIPTPATH/..
-
-# Custom JENKINS_PERSISTENT_WORKDIR?
-if [ "$#" -eq 2 ]; then
-    JENKINS_PERSISTENT_WORKDIR=$2
-fi
 
 # Get sources
 git checkout $sourceBranch
