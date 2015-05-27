@@ -6,7 +6,7 @@
 ```
 #!bash
 
-    ./repo init -u .git -m manifests/resin-board.xml
+    ./repo init -u .git -m manifests/resin-board-master.xml
     ./repo sync
 ```
 * At this point you should have all the dependent layers for building an image for a resin supported board.
