@@ -17,7 +17,7 @@
 BARYSVERSION=1.1
 
 # JSON machine desciption file
-JSON=resin-boards.json
+JSON=device-types.json
 
 # Default values
 COMPRESS_TOOL="xz"
@@ -155,10 +155,10 @@ pushd `dirname $0` > /dev/null 2>&1
 SCRIPTPATH=`pwd`
 popd > /dev/null 2>&1
 
-if [ ! -f $SCRIPTPATH/$JSON ]; then
+if [ ! -f $SCRIPTPATH/../resin-device-types/$JSON ]; then
     log ERROR "Cannot find $JSON file in $SCRIPTPATH."
 else
-    SUPPORTED_MACHINES=`cat $SCRIPTPATH/$JSON | jq  -r '.supported[].machine'`
+    SUPPORTED_MACHINES=`cat $SCRIPTPATH/../resin-device-types/$JSON | jq  -r '[.[].yoctomachine] | sort | .[] | select(. != null)'`
 fi
 
 # This script depends on jq
@@ -358,7 +358,8 @@ fi
 cd $SCRIPTPATH/..
 
 # Configure build
-$SCRIPTPATH/generate-conf-notes.sh $SCRIPTPATH/../meta-resin/meta-resin-common/conf $SCRIPTPATH/$JSON
+$SCRIPTPATH/generate-conf-notes.sh $SCRIPTPATH/../meta-resin/meta-resin-common/conf $SCRIPTPATH/../resin-device-types/$JSON
+
 export TEMPLATECONF=../meta-resin/meta-resin-common/conf/
 source poky/oe-init-build-env $BUILDDIR
 if [ "x$STAGING" == "xyes" ]; then
@@ -389,7 +390,7 @@ else
       ITERATOR_MACHINES="$MACHINES"
   fi
   for machine in $ITERATOR_MACHINES; do
-      IMAGE=`cat $SCRIPTPATH/$JSON | jq  -r '.supported[] | select(.machine == '\"${machine}\"').image'`
+      IMAGE=`cat $SCRIPTPATH/../resin-device-types/$JSON | jq  -r '.[] | select(.yoctomachine == '\"${machine}\"').yoctoimage'`
       if [ -z "$IMAGE" ] || [ "z$IMAGE" == "znull" ]; then
           log ERROR "No target image defined for $machine."
       fi
@@ -404,8 +405,8 @@ else
       fi
   done
   for machine in $ITERATOR_MACHINES; do
-        IMAGE=`cat $SCRIPTPATH/$JSON | jq  -r '.supported[] | select(.machine == '\"${machine}\"').image'`
-        FSTYPE=`cat $SCRIPTPATH/$JSON | jq  -r '.supported[] | select(.machine == '\"${machine}\"').fstype'`
+        IMAGE=`cat $SCRIPTPATH/../resin-device-types/$JSON | jq  -r '.[] | select(.yoctomachine == '\"${machine}\"').yoctoimage'`
+        FSTYPE=`cat $SCRIPTPATH/../resin-device-types/$JSON | jq  -r '.[] | select(.yoctomachine == '\"${machine}\"').yoctofstype'`
         if [ -z "$IMAGE" ] || [ -z "$FSTYPE" ] || [ "z$IMAGE" == "znull" ] || [ "z$FSTYPE" == "znull" ]; then
           log ERROR "No target image and/or fstype defined for $machine."
       fi

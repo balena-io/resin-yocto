@@ -18,3 +18,5 @@ shared-*/
 
 # Some log files from scripts
 *.log
+
+resin-device-types
