@@ -8,6 +8,9 @@
   <project name="openembedded/meta-openembedded" revision="5b0305d9efa4b5692cd942586fb7aa92dba42d59" path="meta-openembedded" remote="github"/> <!-- Current fido HEAD -->
   <project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket" />
 
+  <!-- Misc layers -->
+  <project name="rulemotion/resin-device-types" revision="master" path="resin-device-types" sync-c="true" remote="bitbucket" />
+
   <!-- BSP layers -->
   <project name="meta-ti" revision="60a7bfbf96609ef6f3e084c32b2af853222b3b7e" remote="yocto" /> <!-- Current master HEAD -->
   <project name="Freescale/meta-fsl-arm" revision="270599a407a36f1ff0cdbe5fcfc03f1a3a61789c" path="meta-fsl-arm" remote="github"/> <!-- Current fido HEAD -->
