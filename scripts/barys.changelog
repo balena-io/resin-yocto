@@ -3,6 +3,7 @@
 - Add support for custom paths while using SHARED_SSTATE and DL_DIR
 - Fail with exit code 2 if at least one of the bitbake failed
 - Fix interactive build name
+- Implement json description of boards and build conf-notes.txt generator
 
 1.0
 ===
