@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-  <include name="manifests/resin-board.xml"/>
+  <include name="manifests/resin-board-master.xml"/>
 
   <!-- We keep this as documentation on how to override a project
   <remove-project name="repository" />
