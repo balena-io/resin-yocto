@@ -17,17 +17,19 @@
 BARYSVERSION=1.0
 
 # Supported machines - each machine needs an IMAGE_<machine> definition
-SUPPORTED_MACHINES=(raspberrypi raspberrypi2 beaglebone nitrogen6x parallella-hdmi-resin)
+SUPPORTED_MACHINES=(raspberrypi raspberrypi2 beaglebone nitrogen6x parallella-hdmi-resin cubox-i)
 IMAGE_raspberrypi=resin-image
 IMAGE_raspberrypi2=resin-image
 IMAGE_beaglebone=resin-image-flasher
 IMAGE_nitrogen6x=resin-image
 IMAGE_parallella_hdmi_resin=resin-image
+IMAGE_cubox_i=resin-image
 FSTYPE_raspberrypi=resin-sdcard
 FSTYPE_raspberrypi2=resin-sdcard
 FSTYPE_beaglebone=resin-sdcard
 FSTYPE_nitrogen6x=resin-sdcard
 FSTYPE_parallella_hdmi_resin=resin-sdcard
+FSTYPE_cubox_i=resin-sdcard
 
 # Default values
 COMPRESS_TOOL="xz"
