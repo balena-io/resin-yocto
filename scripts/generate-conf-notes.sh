@@ -27,15 +27,15 @@ echo -e "
  ---------------------------------- \n" > $CONF/$CONFNAME
 
 echo "Resin specific targets are:" >> $CONF/$CONFNAME
-for target in `cat $JSON | jq  -r '[.[].yoctoimage] | unique | sort | .[] | select( . != null)'`; do
+for target in `cat $JSON | jq  -r '[.[].yocto.image] | unique | sort | .[] | select( . != null)'`; do
     echo "    $target" >> $CONF/$CONFNAME
 done
 echo >> $CONF/$CONFNAME
 
-for machine in `cat $JSON | jq  -r '[.[].yoctomachine] | sort | .[] | select( . != null)'`; do
-    NAME=`cat $JSON | jq  -r '.[] | select(.yoctomachine == '\"${machine}\"').name'`
-    MACHINE=`cat $JSON | jq  -r '.[] | select(.yoctomachine == '\"${machine}\"').yoctomachine'`
-    IMAGE=`cat $JSON | jq  -r '.[] | select(.yoctomachine == '\"${machine}\"').yoctoimage'`
+for machine in `cat $JSON | jq  -r '[.[].yocto.machine] | sort | .[] | select( . != null)'`; do
+    NAME=`cat $JSON | jq  -r '.[] | select(.yocto.machine == '\"${machine}\"').name'`
+    MACHINE=`cat $JSON | jq  -r '.[].yocto | select(.machine == '\"${machine}\"').machine'`
+    IMAGE=`cat $JSON | jq  -r '.[].yocto | select(.machine == '\"${machine}\"').image'`
     printf "%-25s : %s\n" "$NAME" "\$ MACHINE=$MACHINE bitbake $IMAGE" >> $CONF/$CONFNAME
 done
 echo >> $CONF/$CONFNAME
