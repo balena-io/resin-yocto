@@ -9,7 +9,7 @@
   <project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket" />
 
   <!-- Misc layers -->
-  <project name="rulemotion/resin-device-types" revision="master" path="resin-device-types" sync-c="true" remote="bitbucket" />
+  <project name="rulemotion/resin-device-types" revision="d5309e6f6d083a0c570d8fc162d4cb3b13a70cd3" path="resin-device-types" sync-c="true" remote="bitbucket" />
 
   <!-- BSP layers -->
   <project name="meta-ti" revision="60a7bfbf96609ef6f3e084c32b2af853222b3b7e" remote="yocto" /> <!-- Current master HEAD -->
