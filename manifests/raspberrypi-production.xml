@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-  <include name="manifests/resin-board.xml"/>
+  <include name="manifests/resin-board-master.xml"/>
 
   <!-- Use production branch of meta-resin> -->
   <remove-project name="rulemotion/meta-resin" />
