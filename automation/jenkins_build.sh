@@ -45,8 +45,10 @@ BARYS_ARGUMENTS_VAR=BARYS_ARGUMENTS_$sourceBranch
     --rm-work
 
 # Write deploy artifacts
-mkdir -p $JENKINS_DEPLOY_DIR/$BUILD_NUMBER
-rm -rf $JENKINS_DEPLOY_DIR/$BUILD_NUMBER/* # do we have anything there?
-cp -rv build/tmp/deploy/images/$MACHINE/*.resin-sdcard $JENKINS_DEPLOY_DIR/$BUILD_NUMBER
-cp build/tmp/deploy/images/$MACHINE/VERSION $JENKINS_DEPLOY_DIR/$BUILD_NUMBER
-ln -sf $BUILD_NUMBER $JENKINS_DEPLOY_DIR/latest
+BUILD_NAME=$sourceBranch-$BUILD_NUMBER
+BUILD_DEPLOY_DIR=$JENKINS_DEPLOY_DIR/$BUILD_NAME
+mkdir -p $BUILD_DEPLOY_DIR
+rm -rf $BUILD_DEPLOY_DIR/* # do we have anything there?
+cp -rv build/tmp/deploy/images/$MACHINE/*.resin-sdcard $BUILD_DEPLOY_DIR
+cp -v build/tmp/deploy/images/$MACHINE/VERSION $BUILD_DEPLOY_DIR
+ln -snf $BUILD_NAME $JENKINS_DEPLOY_DIR/$sourceBranch-latest
