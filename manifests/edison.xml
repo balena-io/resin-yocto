@@ -5,7 +5,7 @@
 
 	<project name="poky" revision="39d2ca4e34e9c7a67e4df56cfb49dcc106bf397e" remote="yocto"/>
 	<project name="meta-intel-iot-middleware" revision="daisy" remote="yocto"/>
-	<project name="rulemotion/meta-resin" revision="master" path="meta-resin" sync-c="true" remote="bitbucket">
+	<project name="rulemotion/meta-resin" revision="c818bc4706ab8ab93347c35b8dfc8348a9b88545" path="meta-resin" sync-c="true" remote="bitbucket">
 		<linkfile dest="build/conf/local.conf" src="meta-resin-edison/conf/local.conf"/>
 		<linkfile dest="build/conf/bblayers.conf" src="meta-resin-edison/conf/bblayers.conf"/>
 	</project>
