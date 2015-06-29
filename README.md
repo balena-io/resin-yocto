@@ -24,6 +24,7 @@
 
 ###** Builds using yocto helper [BARYS] **###
 * This repository comes with a build helper which can automate builds and can run multiple configurations in the same build.
+* Be aware that barys is implemented using TEMPLATECONF. This variable is used in yocto's oe-setup-builddir script which updates the local.conf (and bblayers.conf) only if it doesn't exist (if you create a clean build). This avoids overwriting user's local configuration for a specific build.
 * For more information check the helper's usage:
 ```
 #!bash
